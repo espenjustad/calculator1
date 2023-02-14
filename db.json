@@ -1,0 +1,37 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "name": "espen",
+      "email": "espen.justad@gmail.com",
+      "input": "dddddd",
+      "id": 2
+    },
+    {
+      "name": "espen",
+      "email": "gggg",
+      "input": "dddddd",
+      "id": 3
+    },
+    {
+      "name": "new",
+      "email": "espen.justad@gmail.com",
+      "input": "gggggg",
+      "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

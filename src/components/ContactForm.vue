@@ -1,33 +1,28 @@
 <template>
   <div class="contact-form">
-    <form>
-      <h3>Name</h3>
+    <form @submit.prevent="sendForm">
+      <fieldset>
+        <legend>What is your name?</legend>
 
-      <label>Title</label>
-      <input
-        v-model="event.title"
-        type="text"
-        placeholder="Title"
-        class="field"
-      />
+        <BaseInput
+          v-model="feedback.name"
+          label="name"
+          type="text"
+          error="This is an error"
+        />
+      </fieldset>
 
-      <label>Email</label>
-      <input
-        v-model="event.description"
-        type="text"
-        placeholder="Description"
-        class="field"
-      />
+      <fieldset>
+        <legend>What is your email?</legend>
 
-      <h3>Feedback</h3>
+        <BaseInput v-model="feedback.email" label="email" type="text" />
+      </fieldset>
 
-      <label>Feedback</label>
-      <input
-        v-model="event.location"
-        type="text"
-        placeholder="Location"
-        class="field"
-      />
+      <fieldset>
+        <legend>your feedback to us:</legend>
+
+        <BaseInput v-model="feedback.input" label="input" type="text" />
+      </fieldset>
 
       <button type="submit">Submit</button>
     </form>
@@ -35,23 +30,42 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: contact-form,
-
-
   data() {
     return {
       feedback: {
         name: "",
         email: "",
-        text: "",
+        input: "",
       },
     };
+  },
+
+  methods: {
+    sendForm() {
+      axios
+        .post("http://localhost:3000/posts", this.feedback)
+        .then(function (response) {
+          console.log("Response", response);
+        })
+        .catch(function (err) {
+          console.log("Error", err);
+        });
+    },
   },
 };
 </script>
 <style>
-.contact-form {
-  border: 1px solid black;
+fieldset {
+  border: 0;
+  margin: 30px;
+  padding: 0;
+}
+
+legend {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 20px;
 }
 </style>
